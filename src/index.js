@@ -49,18 +49,25 @@ const monster_man = {
   color: more_colors[4],
   describe() {
     console.log(
+      `a monster man has a name ${this.name} is ${this.color} and has taken ${this.step} steps`
+    );
+  },
+  describe_unbound() {
+    //this was orignally a bug, left in to show its bound to an *instance*
+    console.log(
       `a monster man has a name ${monster_man.name} is ${monster_man.color} and has taken ${monster_man.step} steps`
     );
   },
 };
 monster_man.describe();
+console.log("now we clone, then mutate original, output, then oputput clone");
 const another_monster_man = { ...monster_man };
 another_monster_man.name = "bob";
 monster_man.color = "green";
 monster_man.walk();
 monster_man.describe();
 another_monster_man.describe();
-//they are the same still because the spread operator goes only "one level deep" when copying objects (only the root object is allocated new memory, the rest is references to the original)
+another_monster_man.describe_unbound(); //note the difference here becasue of the call is defined with an *instance*
 function sum(x, y, z) {
   return x + y + z;
 }
@@ -77,3 +84,7 @@ class Monster {
 }
 const classy_monster = new Monster(monster_man);
 console.log(classy_monster);
+classy_monster.describe();
+const another_classy_monster = new Monster(another_monster_man);
+console.log(another_classy_monster);
+another_classy_monster.describe(); //so fucking weird! the function was bound when the orignal object was defined!
