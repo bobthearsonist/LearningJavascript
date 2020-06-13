@@ -19,9 +19,7 @@ const person = {
   },
 };
 
-//**
-//this, class methods, bind, arrow functions
-//
+//** this, class methods, bind, arrow functions*/
 _.range(4).forEach((value, index) => person.walk(index)); //were walking...
 person.talk(); //this is person
 let talk = person.talk;
@@ -36,21 +34,18 @@ const colors = [0, 1, 2, 3];
 const items = colors.map((color) => `<li>${color}</li>`);
 console.log(items);
 
-//**** */
-// object destructuring
-//***** */
-
+//**** object destructuring */
 const { name } = person;
-
 console.log(`${name} is cool`);
 const { name: coolguy } = person;
 console.log(`${coolguy} is really cool`);
 
-//** spread oeprator */
+//** spread operator */
+// SHALLOW COPY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (past the root object at least)
 const more_colors = [...colors, "purple", "green", "yellow"];
 console.log(more_colors);
 const monster_man = {
-  ...person,
+  ...person, //this is the part to pay attention too
   color: more_colors[4],
   describe() {
     console.log(
@@ -71,7 +66,7 @@ function sum(x, y, z) {
 }
 console.log(sum(...[1, 2, 3]));
 
-//**calsses! */
+//** calsses! */
 class Monster {
   constructor(monster_man) {
     Object.assign(this, monster_man); //this is fucking cool
