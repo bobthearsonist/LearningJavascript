@@ -1,6 +1,4 @@
 import _ from "lodash";
-import { wait } from "@testing-library/dom";
-import { yellow } from "color-name";
 
 const person = {
   name: "martin",
@@ -72,3 +70,15 @@ function sum(x, y, z) {
   return x + y + z;
 }
 console.log(sum(...[1, 2, 3]));
+
+//**calsses! */
+class Monster {
+  constructor(monster_man) {
+    Object.assign(this, monster_man); //this is fucking cool
+  }
+  yell() {
+    console.log(this.name);
+  }
+}
+const classy_monster = new Monster(monster_man);
+console.log(classy_monster);
