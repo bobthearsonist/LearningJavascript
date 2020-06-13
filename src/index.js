@@ -74,14 +74,9 @@ function sum(x, y, z) {
 console.log(sum(...[1, 2, 3]));
 
 //** calsses! */
-class Monster {
-  constructor(monster_man) {
-    Object.assign(this, monster_man); //this is fucking cool
-  }
-  yell() {
-    console.log(this.name);
-  }
-}
+//** modules */
+//** inheritance */
+import { Monster } from "./js101/monster"; // eslint-disable-line import/first
 const classy_monster = new Monster(monster_man);
 console.log(classy_monster);
 classy_monster.describe();
@@ -109,4 +104,8 @@ sea_monster.yell();
 sea_monster.swim();
 sea_monster.yell();
 
-//** modules */
+//** composition */
+import { FlyingMonster } from "./js101/flyingMonster"; // eslint-disable-line import/first
+import { JetPack } from "./js101/jetpack"; // eslint-disable-line import/first
+const flying_monster = new FlyingMonster(monster_man, new JetPack());
+flying_monster.fly();
