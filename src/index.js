@@ -88,3 +88,25 @@ classy_monster.describe();
 const another_classy_monster = new Monster(another_monster_man);
 console.log(another_classy_monster);
 another_classy_monster.describe(); //so fucking weird! the function was bound when the orignal object was defined!
+
+class SeaMonster extends Monster {
+  constructor(monster_man) {
+    super(monster_man);
+    this.swimming = false;
+  }
+  swim() {
+    this.swimming = ~this.swimming;
+  }
+  yell() {
+    if (this.swimming) console.log("BLUB BLUB BLUUUUERGRRG");
+    else super.yell();
+  }
+}
+
+const sea_monster = new SeaMonster(monster_man);
+sea_monster.describe();
+sea_monster.yell();
+sea_monster.swim();
+sea_monster.yell();
+
+//** modules */
