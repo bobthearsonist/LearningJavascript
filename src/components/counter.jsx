@@ -2,13 +2,14 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    value: this.props.value,
-    id: this.props.id,
+    value: this.props.counter.value,
+    id: this.props.counter.id,
   };
 
   handleIncrement = () => {
     console.log("Increment clicked");
-    this.setState({ value: this.state.value + 1 });
+    const value = this.state.value + 1;
+    this.setState({ value });
   };
 
   handleDelete = (counterId) => {
