@@ -6,15 +6,20 @@ class Counter extends Component {
   };
 
   render() {
-    const { imageUrl } = this.state;
     return (
       <React.Fragment>
-        <span style={{ fontSize: 30 }} className="badge badge-primary m-2">
-          {this.formatCount()}
-        </span>
+        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button className="btn btn-secondary btn-nm">Increment</button>
       </React.Fragment>
     );
+  }
+
+  getBadgeClasses() {
+    let classes = ["badge", "m-2"];
+    return (this.state.count === 0
+      ? [...classes, "badge-warning"]
+      : [...classes, "badge-primary"]
+    ).join(" ");
   }
 
   formatCount() {
