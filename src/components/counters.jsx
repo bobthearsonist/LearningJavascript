@@ -2,23 +2,43 @@ import React, { Component } from "react";
 import Counter from "./counter";
 
 class Counters extends Component {
-  counters = [
-    { id: 0, value: 0 },
-    { id: 1, value: 4 },
-    { id: 2, value: 0 },
-    { id: 3, value: 0 },
-  ];
   state = {
-    counters: this.counters,
+    counters: [],
+  };
+
+  idForNextCounter = 0;
+
+  getNextCounterId = () => {
+    return this.idForNextCounter++;
   };
 
   handleDelete = (counterId) => {
-    console.log("Delete received");
+    console.log("Delete received " + counterId);
+    this.setState({
+      counters: this.state.counters.filter(
+        (counter) => counter.id !== counterId
+      ),
+    });
+  };
+
+  handleNew = () => {
+    this.setState({
+      counters: [
+        ...this.state.counters,
+        {
+          id: this.getNextCounterId(),
+          value: 0,
+        },
+      ],
+    });
   };
 
   render() {
     return (
       <div>
+        <button className="btn-primary m-2" onClick={() => this.handleNew()}>
+          Add New Counter
+        </button>
         {this.state.counters.map((counter) => (
           <Counter
             key={counter.id}
