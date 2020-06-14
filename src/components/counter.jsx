@@ -1,31 +1,46 @@
-import React, { Component } from "react";
+import React from "react";
 
 const handleIncrement = (onIncrement, id) => {
-  console.log("Increment clicked " + id);
+  console.log("increment clicked " + id);
   onIncrement(id);
 };
 
+const handleDecrement = (onDecrement, id) => {
+  console.log("decrement clicked " + id);
+  onDecrement(id);
+};
+
 const handleDelete = (onDelete, id) => {
-  console.log("Delete clicked " + id);
+  console.log("delete clicked " + id);
   onDelete(id);
 };
 
-const Counter = ({ counter, children, onDelete, onIncrement }) => {
+const DeleteLabel = "x";
+const IncrementLabel = "+";
+const DecrementLabel = "-";
+
+const Counter = ({ counter, children, onDelete, onIncrement, onDecrement }) => {
   return (
     <div>
       {children}
       <span className={getBadgeClasses(counter)}>{formatCount(counter)}</span>
       <button
         onClick={() => handleIncrement(onIncrement, counter.id)}
-        className="btn btn-secondary btn-sm"
+        className="btn btn-secondary btn-sm m-2"
       >
-        Increment
-      </button>{" "}
+        {IncrementLabel}
+      </button>
+      <button
+        className="btn btn-secondary btn-sm m-2"
+        onClick={() => handleDecrement(onDecrement, counter.id)}
+      >
+        {DecrementLabel}
+      </button>
       <button
         className="btn btn-danger btn-sm m-2"
         onClick={() => handleDelete(onDelete, counter.id)}
       >
-        Delete
+        {DeleteLabel}
       </button>
     </div>
   );

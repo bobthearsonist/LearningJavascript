@@ -58,6 +58,20 @@ class App extends Component {
     this.setState({ counters });
   };
 
+  handleDecrement = (counterId) => {
+    console.log("handle decrement " + counterId);
+    const newCounter = this.state.counters.filter(
+      (counter) => counter.id === counterId
+    )[0];
+    newCounter.value -= 1;
+    const counters = this.state.counters
+      .filter((counter) => counter.id !== counterId)
+      .concat(newCounter)
+      .sort((a, b) => a.id - b.id);
+
+    this.setState({ counters });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -70,6 +84,7 @@ class App extends Component {
           <Counters
             counters={this.state.counters}
             onIncrement={(counterId) => this.handleIncrement(counterId)}
+            onDecrement={(counterId) => this.handleDecrement(counterId)}
             onDelete={(counterId) => this.handleDelete(counterId)}
           />
         </main>
