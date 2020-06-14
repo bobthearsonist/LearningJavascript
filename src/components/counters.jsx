@@ -8,13 +8,15 @@ class Counters extends Component {
   };
   render() {
     return (
-      <ul>
-        {this.state.counters.map((counter, index) => (
-          <li>
-            <Counter></Counter>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <tr className="body">
+          {this.state.counters.map((counter, index) => (
+            <tr>
+              <Counter hasMargin></Counter>
+            </tr>
+          ))}
+        </tr>
+      </table>
     );
   }
 }
