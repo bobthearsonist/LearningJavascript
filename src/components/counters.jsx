@@ -24,7 +24,7 @@ const Counters = ({ counters, onDelete, onDecrement, onIncrement }) => {
           onIncrement={(counterId) => handleIncrement(onIncrement, counterId)}
           onDecrement={(counterId) => handleDecrement(onDecrement, counterId)}
         >
-          <h3>Counter # {counter.id}</h3>
+          <label className="lbl m-2">Counter # {counter.id}</label>
         </Counter>
       ))}
     </div>

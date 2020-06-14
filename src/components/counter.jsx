@@ -21,27 +21,44 @@ const DecrementLabel = "-";
 
 const Counter = ({ counter, children, onDelete, onIncrement, onDecrement }) => {
   return (
-    <div>
-      {children}
-      <span className={getBadgeClasses(counter)}>{formatCount(counter)}</span>
-      <button
-        onClick={() => handleIncrement(onIncrement, counter.id)}
-        className="btn btn-secondary btn-sm m-2"
-      >
-        {IncrementLabel}
-      </button>
-      <button
-        className="btn btn-secondary btn-sm m-2"
-        onClick={() => handleDecrement(onDecrement, counter.id)}
-      >
-        {DecrementLabel}
-      </button>
-      <button
-        className="btn btn-danger btn-sm m-2"
-        onClick={() => handleDelete(onDelete, counter.id)}
-      >
-        {DeleteLabel}
-      </button>
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <div className={getBadgeClasses(counter)}>{formatCount(counter)}</div>
+        </div>
+        <div className="col">{children}</div>
+        <div className="col">
+          <div className="row">
+            <div className="col">
+              <button
+                onClick={() => handleIncrement(onIncrement, counter.id)}
+                className="btn btn-secondary btn-sm m-2 btn-block"
+              >
+                {IncrementLabel}
+              </button>
+            </div>
+            <div className="col">
+              {" "}
+              <button
+                className={getDecrementClasses(counter)}
+                onClick={() => handleDecrement(onDecrement, counter.id)}
+                disabled={counter.value === 0 ? true : false}
+              >
+                {DecrementLabel}
+              </button>{" "}
+            </div>
+            <div className="col">
+              {" "}
+              <button
+                className="btn btn-secondary btn-danger btn-sm m-2 btn-block"
+                onClick={() => handleDelete(onDelete, counter.id)}
+              >
+                {DeleteLabel}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -52,6 +69,11 @@ const getBadgeClasses = (counter) => {
     ? [...classes, "badge-warning"]
     : [...classes, "badge-primary"]
   ).join(" ");
+};
+
+const getDecrementClasses = (counter) => {
+  let classes = ["btn", "btn-secondary", "btn-sm", "m-2", "btn-block"];
+  return (counter.value === 0 ? [...classes, "disabled"] : classes).join(" ");
 };
 
 const formatCount = (counter) => {

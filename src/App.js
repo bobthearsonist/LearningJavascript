@@ -7,6 +7,11 @@ class App extends Component {
     counters: [],
   };
 
+  // constructor(props) {
+  //   super();
+  //   this.state.counters = props.counters;
+  // }
+
   idForNextCounter = 0;
 
   getNextCounterId = () => {
@@ -80,7 +85,7 @@ class App extends Component {
           onNew={() => this.handleNew()}
           onReset={() => this.handleReset()}
         />
-        <main role="main" class="container">
+        <main role="main" className="container">
           <Counters
             counters={this.state.counters}
             onIncrement={(counterId) => this.handleIncrement(counterId)}
