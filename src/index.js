@@ -5,11 +5,10 @@ import "./index.css";
 import App from "./App"; // eslint-disable-line no-unused-vars
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
-import Counters from "./components/counters";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counters />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
