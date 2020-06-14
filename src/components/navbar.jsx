@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
 class NavBar extends Component {
-  state = {};
-
   handleNew = () => {
     console.log("new clicked");
     this.props.onNew();
@@ -17,8 +15,14 @@ class NavBar extends Component {
     return (
       <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
+          <span className="m-2">Total</span>
           <span className="badge badge-pill badge-secondary">
-            {this.props.counters.length}
+            {this.props.counters
+              .map((counter) => counter.value)
+              .reduce(
+                (accumulator, currentValue) => accumulator + currentValue,
+                0
+              )}
           </span>
           <button className="btn-primary m-2" onClick={() => this.handleNew()}>
             Add New Counter
