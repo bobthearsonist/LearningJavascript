@@ -14,7 +14,8 @@ class Counter extends Component {
   render() {
     return (
       <React.Fragment>
-        <ul>{this.renderTags()}</ul>
+        {this.state.tags.length === 0 && "Please create a new tag"}
+        {this.renderTags()}
       </React.Fragment>
     );
   }
