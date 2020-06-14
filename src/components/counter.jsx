@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  state = {
-    value: this.props.counter.value,
-    id: this.props.counter.id,
+  handleIncrement = (id) => {
+    console.log("Increment clicked " + id);
+    this.props.onIncrement(id);
   };
 
-  handleIncrement = () => {
-    console.log("Increment clicked");
-    const value = this.state.value + 1;
+  handleDelete = (id) => {
+    console.log("Delete clicked " + id);
+    this.props.onDelete(id);
+  };
+
+  handleReset = () => {
+    console.log("reset received");
+    const value = 0;
     this.setState({ value });
   };
 
-  handleDelete = (counterId) => {
-    console.log("Delete clicked " + counterId);
-    this.props.handleDelete(counterId);
-  };
-
   render() {
-    const { id } = this.state;
+    const { id } = this.props.counter;
 
-    console.log("props", this.props);
     return (
       <div>
         {this.props.children}
@@ -42,15 +41,16 @@ class Counter extends Component {
   }
 
   getBadgeClasses() {
+    const { value } = this.props.counter;
     let classes = ["badge", "m-2"];
-    return (this.state.value === 0
+    return (value === 0
       ? [...classes, "badge-warning"]
       : [...classes, "badge-primary"]
     ).join(" ");
   }
 
   formatCount = () => {
-    const { value } = this.state;
+    const { value } = this.props.counter;
 
     return value === 0 ? "Zero" : value;
   };
