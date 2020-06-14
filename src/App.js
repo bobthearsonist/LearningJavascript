@@ -52,7 +52,8 @@ class App extends Component {
     newCounter.value += 1;
     const counters = this.state.counters
       .filter((counter) => counter.id !== counterId)
-      .concat(newCounter);
+      .concat(newCounter)
+      .sort((a, b) => a.id - b.id);
 
     this.setState({ counters });
   };

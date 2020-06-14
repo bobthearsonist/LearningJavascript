@@ -17,6 +17,9 @@ class NavBar extends Component {
     return (
       <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
+          <span className="badge badge-pill badge-secondary">
+            {this.props.counters.length}
+          </span>
           <button className="btn-primary m-2" onClick={() => this.handleNew()}>
             Add New Counter
           </button>
