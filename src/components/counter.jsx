@@ -11,6 +11,10 @@ class Counter extends Component {
     this.setState({ value: this.state.value + 1 });
   };
 
+  handleDelete() = () => {
+      console.log("Delete clicked")
+  }
+
   render() {
     const { tag } = this.state;
 
@@ -25,6 +29,7 @@ class Counter extends Component {
         >
           Increment
         </button>{" "}
+        <button onClick={()=>this.handleDelete()}></button>
       </div>
     );
   }
