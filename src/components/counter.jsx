@@ -2,26 +2,36 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
+    count: [0, 0, 0],
     tags: ["tag1", "tag2", "tag3"],
   };
 
-  handleIncrement() {
+  handleIncrement = (product) => {
     console.log("Increment clicked");
-    this.setState({ count: this.state.count + 1 });
-  }
+    let updatedCount = this.state.count;
+    updatedCount[this.state.tags.indexOf(product)]++;
+    this.setState({ count: updatedCount });
+  };
 
   render() {
     return (
-      <React.Fragment>
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button
-          onClick={this.handleIncrement.bind(this)}
-          className="btn btn-secondary btn-nm"
-        >
-          Increment
-        </button>
-      </React.Fragment>
+      <ul>
+        {this.state.tags.map((tag, index) => (
+          <li>
+            <React.Fragment>
+              <span className={this.getBadgeClasses()}>
+                {this.formatCount(tag)}
+              </span>
+              <button
+                onClick={() => this.handleIncrement(tag)}
+                className="btn btn-secondary btn-nm"
+              >
+                Increment
+              </button>{" "}
+            </React.Fragment>
+          </li>
+        ))}
+      </ul>
     );
   }
 
@@ -33,11 +43,13 @@ class Counter extends Component {
     ).join(" ");
   }
 
-  formatCount() {
-    const { count } = this.state;
+  formatCount = (product) => {
+    const { count, tags } = this.state;
 
-    return count === 0 ? "Zero" : count;
-  }
+    return count[tags.indexOf(product)] === 0
+      ? "Zero"
+      : count[tags.indexOf(product)];
+  };
 }
 
 export default Counter;
