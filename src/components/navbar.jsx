@@ -1,34 +1,34 @@
 import React, { Component } from "react";
 
-const handleNew = (props) => {
+const handleNew = (onNew) => {
   console.log("new clicked");
-  props.onNew();
+  onNew();
 };
 
-const handleReset = (props) => {
+const handleReset = (onReset) => {
   console.log("reset clicked");
-  props.onReset();
+  onReset();
 };
 
-const NavBar = (props) => {
+const NavBar = ({ counters, onNew, onReset }) => {
   return (
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="#">
         <span className="m-2">Total</span>
         <span className="badge badge-pill badge-secondary">
-          {props.counters
+          {counters
             .map((counter) => counter.value)
             .reduce(
               (accumulator, currentValue) => accumulator + currentValue,
               0
             )}
         </span>
-        <button className="btn-primary m-2" onClick={() => handleNew(props)}>
+        <button className="btn-primary m-2" onClick={() => handleNew(onNew)}>
           Add New Counter
         </button>
         <button
           className="m-2 button-danger"
-          onClick={() => handleReset(props)}
+          onClick={() => handleReset(onReset)}
         >
           Reset
         </button>{" "}
